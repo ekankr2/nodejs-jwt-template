@@ -26,7 +26,7 @@ export class App {
   }
 
   /**
-   * 데이터베이스를 세팅한다.
+   * set database.
    */
   private async setDatabase(): Promise<void> {
     try {
@@ -37,7 +37,7 @@ export class App {
   }
 
   /**
-   * 미들웨어를 세팅한다.
+   * set middlewares.
    */
   private setMiddlewares(): void {
     this.app.use(bodyParser.json());
@@ -47,8 +47,8 @@ export class App {
   }
 
   /**
-   * Express를 시작한다.
-   * @param port 포트
+   * initiate Express.
+   * @param port port
    */
   public async createExpressServer(port: number): Promise<void> {
     try {

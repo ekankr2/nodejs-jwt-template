@@ -2,7 +2,7 @@ import { IsNotEmpty, Length, IsEmail } from "class-validator";
 import { User } from "../entities/User";
 
 /**
- * 사용자 생성 DTO
+ * user generate DTO
  */
 export class CreateUserDto {
   @IsNotEmpty()
@@ -30,7 +30,7 @@ export class CreateUserDto {
 }
 
 /**
- * 사용자 로그인 DTO
+ * user signIn DTO
  */
 export class LoginUserDto {
   @IsNotEmpty()
@@ -52,7 +52,7 @@ export class LoginUserDto {
 }
 
 /**
- * 사용자 Response DTO
+ * user Response DTO
  */
 export class ResponseUserDto {
   public id: string;
@@ -61,7 +61,7 @@ export class ResponseUserDto {
 }
 
 /**
- * 사용자 정보 수정 DTO
+ * user info edit DTO
  */
 export class UpdateUserDto {
   @IsNotEmpty()
@@ -70,7 +70,7 @@ export class UpdateUserDto {
 
 
 /**
- * 토큰 재발급 DTO
+ * token reissue DTO
  */
 export class RefreshTokenDto {
   @IsNotEmpty()

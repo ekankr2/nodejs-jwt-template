@@ -29,7 +29,7 @@ export class AuthController {
     @HttpCode(200)
     @Post("/login")
     @OpenAPI({
-        summary: "사용자 로그인",
+        summary: "user signIn",
         statusCode: "200",
         responses: {
             "401": {
@@ -42,7 +42,7 @@ export class AuthController {
 
         if (!user) {
             return res.status(401).send({
-                message: "유효하지 않은 사용자 이메일/비밀번호 입니다.",
+                message: "Invalid email or password.",
             });
         }
 
@@ -60,7 +60,7 @@ export class AuthController {
     @HttpCode(200)
     @Post("/register")
     @OpenAPI({
-        summary: "사용자 회원가입",
+        summary: "user sign up",
         statusCode: "200",
     })
     public async register(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
@@ -71,7 +71,7 @@ export class AuthController {
         if (isDuplicateUser) {
             return {
                 error: true,
-                message: "이미 사용 중인 이메일입니다.",
+                message: "This email has already been taken.",
             };
         }
 
@@ -99,7 +99,7 @@ export class AuthController {
     @HttpCode(200)
     @Post("/logout")
     @OpenAPI({
-        summary: '로그아웃',
+        summary: 'sign out',
         statusCode: '200',
     })
     public logout(@Res() res: Response) {
@@ -109,7 +109,7 @@ export class AuthController {
         removeRefreshTokenCookie(res)
 
         return {
-            message: '로그아웃 성공'
+            message: 'successfully signed out'
         }
     }
 
@@ -117,8 +117,8 @@ export class AuthController {
     @HttpCode(200)
     @Post("/token/refresh")
     @OpenAPI({
-        summary: "토큰 재발급",
-        description: "RefreshToken을 이용해서 AccessToken을 재발급",
+        summary: "token reissue",
+        description: "Reissue AccessToken with RefreshToken",
         statusCode: "200",
         responses: {
             "406": {
@@ -137,7 +137,7 @@ export class AuthController {
 
         if (!user) {
             return res.status(406).send({
-                message: "유저 정보와 RefreshToken이 일치하지 않습니다.",
+                message: "RefreshToken mismatch.",
             });
         }
 
@@ -152,9 +152,9 @@ export class AuthController {
     @HttpCode(200)
     @Get("/user")
     @OpenAPI({
-        summary: "사용자 정보",
+        summary: "user info",
         description:
-            "AccessToken으로 사용자 정보를 반환한다(Front에서 Token 인증 용도로 사용한다)",
+            "Return user info by AccessToken (used for Frontend auth state check)",
         statusCode: "200",
     })
     @UseBefore(checkCookieAccessToken)
