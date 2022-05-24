@@ -10,8 +10,8 @@ import {
 } from "routing-controllers";
 import {
     checkCookieAccessToken, checkCookieRefreshToken,
-    generateAccessToken, generateAccessTokenCookie,
-    generateRefreshToken, generateRefreshTokenCookie, removeRefreshTokenCookie,
+    generateAccessToken,
+    generateRefreshToken, removeRefreshTokenCookie, setAccessTokenCookie, setRefreshTokenCookie,
 } from "../middlewares/AuthMiddleware";
 import {Response} from "express";
 import {UserService} from "../services/UserService";
@@ -49,8 +49,8 @@ export class AuthController {
         const accessToken = generateAccessToken(user);
         const refreshToken = generateRefreshToken(user);
         await this.authService.saveRefreshToken(user, refreshToken);
-        generateAccessTokenCookie(res, accessToken)
-        generateRefreshTokenCookie(res, refreshToken)
+        setAccessTokenCookie(res, accessToken)
+        setRefreshTokenCookie(res, refreshToken)
 
         return {
             user
@@ -80,8 +80,8 @@ export class AuthController {
         const accessToken = generateAccessToken(newUser);
         const refreshToken = generateRefreshToken(newUser);
         await this.authService.saveRefreshToken(newUser, refreshToken);
-        generateAccessTokenCookie(res, accessToken)
-        generateRefreshTokenCookie(res, refreshToken)
+        setAccessTokenCookie(res, accessToken)
+        setRefreshTokenCookie(res, refreshToken)
 
         const user: ResponseUserDto = {
             id: newUser.id,
@@ -142,7 +142,7 @@ export class AuthController {
         }
 
         const accessToken = generateAccessToken(user);
-        generateAccessTokenCookie(res, accessToken)
+        setAccessTokenCookie(res, accessToken)
 
         return {
             user
