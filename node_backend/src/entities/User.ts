@@ -29,7 +29,7 @@ export class User {
     password: string;
 
     @Column({name: "refresh_token", nullable: true, select: false})
-    refreshToekn: string;
+    refreshToken: string;
 
     @CreateDateColumn({name: "created_at"})
     createdAt: Date;

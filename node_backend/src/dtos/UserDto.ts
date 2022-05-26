@@ -67,15 +67,3 @@ export class UpdateUserDto {
   @IsNotEmpty()
   public realName: string;
 }
-
-
-/**
- * token reissue DTO
- */
-export class RefreshTokenDto {
-  @IsNotEmpty()
-  public refresh_token: string;
-
-  @IsNotEmpty()
-  public grant_type: string
-}

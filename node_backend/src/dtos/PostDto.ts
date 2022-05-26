@@ -4,7 +4,7 @@ import {
   IsNumber,
   Max,
   IsString,
-  IsOptional, ValidateNested, Length, IsArray, IsObject, IsIn, MaxLength, IsEmail,
+  IsOptional, ValidateNested, Length, IsArray, IsEmail,
 } from "class-validator";
 import { Post } from "../entities/Post";
 import {Type} from "class-transformer";
@@ -31,7 +31,7 @@ export class CreatePostDto {
 }
 
 /**
- * bulk insert post DTO
+ * bulk create post DTO
  */
 export class CreateBulkPostDto {
   @IsNotEmpty()

@@ -2,6 +2,7 @@ import cors from "cors";
 import {env} from "../env";
 import express from "express";
 
+// set cors
 export function useCors(app: express.Application) {
     const whitelist = [env.app.apiOrigin];
 

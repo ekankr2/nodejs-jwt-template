@@ -28,7 +28,7 @@ if (!existsSync(logDirectory)) {
 }
 
 /**
- * 콘솔 로그 출력 포맷 설정
+ * format console.log
  */
 const consoleOutputFormat = combine(
   colorize(),
@@ -40,7 +40,7 @@ const consoleOutputFormat = combine(
 );
 
 /**
- * 파일 로그 출력 포맷 설정
+ * format file output
  */
 const fileOutputFormat = combine(
   printf((info) => {
@@ -60,12 +60,12 @@ const options: LoggerOptions = {
     errors({ stack: true }),
   ),
   transports: [
-    // 콘솔 로그 출력
+    // console.log
     new transports.Console({
       handleExceptions: true,
       format: consoleOutputFormat,
     }),
-    // 파일 로그 출력
+    // file log
     new DailyRotateFile({
       handleExceptions: true,
       format: fileOutputFormat,

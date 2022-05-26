@@ -3,7 +3,7 @@ import { createConnection, ConnectionOptions, useContainer } from "typeorm";
 import { env } from "./env";
 
 /**
- * 데이터베이스 커넥션을 생성한다.
+ * connect database
  */
 export async function createDatabaseConnection(): Promise<void> {
   try {

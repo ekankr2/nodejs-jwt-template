@@ -8,7 +8,7 @@ import { routingControllerOptions } from "./RoutingConfig";
 import { env } from "../env";
 
 /**
- * Swagger를 사용하도록 한다.
+ * set Swagger
  * @param app Express Application
  */
 export function useSwagger(app: express.Application) {

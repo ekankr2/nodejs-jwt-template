@@ -22,8 +22,7 @@ export class PostService {
     post.userId = userId;
     post.previewContent = post.content.substring(0, 100);
 
-    const newPost = await this.postRepository.save(post);
-    return newPost;
+    return await this.postRepository.save(post);
   }
 
   /**
@@ -55,7 +54,7 @@ export class PostService {
   ): Promise<Post[]> {
     switch (sort) {
       case "best":
-        const dateBeforeWeek = this.getDateBeforeWeek();
+        const dateBeforeWeek = PostService.getDateBeforeWeek();
 
         return await this.postRepository.getBestPosts(
           offset,
@@ -76,8 +75,8 @@ export class PostService {
   }
 
   /**
-   * 포스트의 조회수를 증가한다.
-   * @param post 포스트
+   * increse post view
+   * @param post post
    */
   public async incrementPostView(post: Post): Promise<void> {
     post.view = post.view + 1;
@@ -141,7 +140,7 @@ export class PostService {
   /**
    * get date of a week before now.
    */
-  private getDateBeforeWeek(): Date {
+  private static getDateBeforeWeek(): Date {
     const date = new Date();
     date.setDate(date.getDate() - 7);
 
