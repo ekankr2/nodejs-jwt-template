@@ -12,7 +12,7 @@ import {
   HttpCode,
   QueryParams,
 } from "routing-controllers";
-import {checkAccessToken, checkCookieAccessToken} from "../middlewares/AuthMiddleware";
+import {checkCookieAccessToken} from "../middlewares/AuthMiddleware";
 import { Response } from "express";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import {CreatePostDto, UpdatePostDto, PageablePostDto} from "../dtos/PostDto";
@@ -35,9 +35,7 @@ export class PostController {
     @Res() res: Response,
   ) {
     const { userId } = res.locals.jwtPayload;
-    const newPost = await this.postService.createPost(createPostDto, userId);
-
-    return newPost;
+    return await this.postService.createPost(createPostDto, userId);
   }
 
   @HttpCode(200)
