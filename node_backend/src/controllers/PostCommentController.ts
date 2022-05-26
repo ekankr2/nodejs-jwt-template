@@ -32,7 +32,7 @@ export class PostCommentController {
     @HttpCode(201)
     @Post("/:postId/comments")
     @OpenAPI({
-        summary: "write post comment",
+        summary: "create post comment",
         statusCode: "201",
         responses: {
             "400": {
@@ -85,7 +85,7 @@ export class PostCommentController {
     @HttpCode(200)
     @Put("/:postId/comments/:id")
     @OpenAPI({
-        summary: "edit post comment",
+        summary: "update post comment",
         statusCode: "200",
         responses: {
             "403": {
@@ -158,7 +158,7 @@ export class PostCommentController {
     @HttpCode(201)
     @Post("/:postId/comments/:id/replies")
     @OpenAPI({
-        summary: "white post reply",
+        summary: "create post reply",
         statusCode: "201",
         responses: {
             "400": {
