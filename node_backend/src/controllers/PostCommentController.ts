@@ -75,11 +75,11 @@ export class PostCommentController {
     public async getAll(@Param("postId") postId: string, @Res() res: Response) {
         const isPost = await this.postService.isPostById(postId);
 
-        if (isPost) {
-            return this.postCommentService.getCommentByPostId(postId);
-        } else {
+        if (!isPost) {
             return res.status(400).send({message: "No matching post."});
         }
+
+        return this.postCommentService.getCommentByPostId(postId);
     }
 
     @HttpCode(200)
@@ -210,10 +210,10 @@ export class PostCommentController {
             commentId,
         );
 
-        if (comments) {
-            return comments;
-        } else {
+        if (!comments) {
             return res.status(400).send({message: "Bad request."});
         }
+
+        return comments;
     }
 }
