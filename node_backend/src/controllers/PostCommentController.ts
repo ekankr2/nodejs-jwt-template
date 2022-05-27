@@ -12,7 +12,7 @@ import {
     Delete,
     HttpCode,
 } from "routing-controllers";
-import {checkAccessToken, checkCookieAccessToken} from "../middlewares/AuthMiddleware";
+import {checkCookieAccessToken} from "../middlewares/AuthMiddleware";
 import {Response} from "express";
 import {OpenAPI} from "routing-controllers-openapi";
 import {
@@ -50,15 +50,15 @@ export class PostCommentController {
 
         const isPost = await this.postService.isPostById(postId);
 
-        if (isPost) {
-            return await this.postCommentService.createPostComment(
-                postId,
-                createPostCommentDto,
-                userId,
-            );
-        } else {
+        if (!isPost) {
             return res.status(400).send({message: "No matching post."});
         }
+
+        return await this.postCommentService.createPostComment(
+            postId,
+            createPostCommentDto,
+            userId,
+        );
     }
 
     @HttpCode(200)

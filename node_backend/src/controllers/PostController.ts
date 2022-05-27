@@ -1,21 +1,21 @@
 import {PostService} from "../services/PostService";
 import {
-    JsonController,
-    Get,
-    Param,
     Body,
+    Delete,
+    Get,
+    HttpCode,
+    JsonController,
+    Param,
     Post,
     Put,
-    UseBefore,
-    Res,
-    Delete,
-    HttpCode,
     QueryParams,
+    Res,
+    UseBefore,
 } from "routing-controllers";
 import {checkCookieAccessToken} from "../middlewares/AuthMiddleware";
 import {Response} from "express";
 import {OpenAPI, ResponseSchema} from "routing-controllers-openapi";
-import {CreatePostDto, UpdatePostDto, PageablePostDto, CreateBulkPostDto} from "../dtos/PostDto";
+import {CreateBulkPostDto, CreatePostDto, PageablePostDto, UpdatePostDto} from "../dtos/PostDto";
 
 @JsonController("/posts")
 export class PostController {
@@ -52,7 +52,7 @@ export class PostController {
         @Res() res: Response
     ) {
         const {userId} = res.locals.jwtPayload;
-        const newPost = await this.postService.createBulkPost(createBulkPostDto, userId)
+        return await this.postService.createBulkPost(createBulkPostDto, userId)
     }
 
     @HttpCode(200)
@@ -98,11 +98,10 @@ export class PostController {
     public async getOne(@Param("id") id: string, @Res() res: Response) {
         const post = await this.postService.getPostById(id);
 
-        if (post) {
-            await this.postService.incrementPostView(post);
-        } else {
+        if(!post){
             return res.status(400).send({message: "no matching post."});
         }
+        await this.postService.incrementPostView(post);
 
         return post;
     }
