@@ -8,6 +8,7 @@ import {
 } from "class-validator";
 import { Post } from "../entities/Post";
 import {Type} from "class-transformer";
+import {JSONSchema} from "class-validator-jsonschema";
 
 /**
  * create post DTO
@@ -40,9 +41,15 @@ export class CreateBulkPostDto {
   public email: string;
 
   @IsArray()
+  @JSONSchema({
+    type: 'array',
+    items: {
+      $ref: '#/components/schemas/CreatePostDto'
+    }
+  })
   @ValidateNested({ each: true })
   @Type(() => CreatePostDto)
-  files: CreatePostDto[]
+  posts: CreatePostDto[]
 }
 
 /**

@@ -35,10 +35,10 @@ export class PostService {
       userId: string
   ): Promise<InsertResult> {
 
-    const modify = createBulkPostDto.files.map((data)=>{
-      return {userId: userId, ...data, previewContent: '12311'}
+    const modifyData = createBulkPostDto.posts.map((data)=>{
+      return {userId: userId, ...data}
     })
-    return await this.postRepository.bulkPost(modify);
+    return await this.postRepository.bulkPost(modifyData);
   }
 
   /**

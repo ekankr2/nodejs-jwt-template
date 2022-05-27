@@ -90,7 +90,7 @@ export class PostRepository extends Repository<Post> {
      * bulk insert.
      * @param data data
      */
-    public async bulkPost(data: {previewContent: string, title: string, content: string, userId: string}[]) {
+    public async bulkPost(data: {title: string, content: string, userId: string}[]) {
         return this.createQueryBuilder("post")
             .insert()
             .into(Post)
