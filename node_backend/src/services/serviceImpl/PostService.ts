@@ -1,8 +1,8 @@
 import {Service} from "typedi";
 import {InjectRepository} from "typeorm-typedi-extensions";
-import {Post} from "../entities/Post";
-import {PostRepository} from "../repositories/PostRepository";
-import {CreateBulkPostDto, CreatePostDto, UpdatePostDto} from "../dtos/PostDto";
+import {Post} from "../../entities/Post";
+import {PostRepository} from "../../repositories/PostRepository";
+import {CreateBulkPostDto, CreatePostDto, UpdatePostDto} from "../../dtos/PostDto";
 import {InsertResult} from "typeorm";
 
 @Service()

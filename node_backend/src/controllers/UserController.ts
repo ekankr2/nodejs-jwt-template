@@ -9,7 +9,7 @@ import {
     UseBefore,
 } from "routing-controllers";
 import {Response} from "express";
-import {UserService} from "../services/UserService";
+import {UserService} from "../services/serviceImpl/UserService";
 import {OpenAPI} from "routing-controllers-openapi";
 import {UpdateUserDto} from "../dtos/UserDto";
 import {checkCookieAccessToken} from "../middlewares/AuthMiddleware";

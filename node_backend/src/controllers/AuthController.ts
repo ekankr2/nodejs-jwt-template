@@ -1,4 +1,4 @@
-import {AuthService} from "../services/AuthService";
+import {AuthServiceImpl} from "../services/serviceImpl/AuthServiceImpl";
 import {
     JsonController,
     Post,
@@ -14,14 +14,14 @@ import {
     generateRefreshToken, removeRefreshTokenCookie, setAccessTokenCookie, setRefreshTokenCookie,
 } from "../middlewares/AuthMiddleware";
 import {Response} from "express";
-import {UserService} from "../services/UserService";
+import {UserService} from "../services/serviceImpl/UserService";
 import {OpenAPI} from "routing-controllers-openapi";
 import {CreateUserDto, LoginUserDto, ResponseUserDto} from "../dtos/UserDto";
 
 @JsonController("/auth")
 export class AuthController {
     constructor(
-        private authService: AuthService,
+        private authService: AuthServiceImpl,
         private userService: UserService,
     ) {
     }

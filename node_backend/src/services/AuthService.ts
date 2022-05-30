@@ -1,63 +1,25 @@
-import { Service } from "typedi";
-import { InjectRepository } from "typeorm-typedi-extensions";
-import { User } from "../entities/User";
-import { UserRepository } from "../repositories/UserRepository";
 import {LoginUserDto} from "../dtos/UserDto";
+import {User} from "../entities/User";
 
-@Service()
-export class AuthService {
-  constructor(@InjectRepository() private userRepository: UserRepository) {}
+export interface AuthService {
 
-  /**
-   * validate user info. If valid return user info
-   * @param loginUserDto user login DTO
-   */
-  public async validateUser(loginUserDto: LoginUserDto): Promise<User> {
-    const user = await this.userRepository.findOne({
-      select: ["id", "email"],
-      where: {
-        email: loginUserDto.email,
-      },
-    });
+    /**
+     * validate user info. If valid return user info
+     * @param loginUserDto user login DTO
+     */
+    validateUser(loginUserDto: LoginUserDto): Promise<User>
 
-    if(user) {
-      return user
-    }
+    /**
+     * get RefreshToken matching user info.
+     * @param userId user Id
+     * @param refreshToken RefreshToken
+     */
+    validateUserToken(userId: string, refreshToken: string): Promise<User>
 
-    return undefined;
-  }
-
-  /**
-   * get RefreshToken matching user info.
-   * @param userId user Id
-   * @param refreshToken RefreshToken
-   */
-  public async validateUserToken(
-    userId: string,
-    refreshToken: string,
-  ): Promise<User> {
-    const user = await this.userRepository.findOne({
-      select: ["id", "email"],
-      where: {
-        id: userId,
-        refreshToken: refreshToken,
-      },
-    });
-
-    if (user) {
-      return user;
-    }
-
-    return undefined;
-  }
-
-  /**
-   * save RefreshToken to user.
-   * @param user User
-   * @param token RefreshToken
-   */
-  public async saveRefreshToken(user: User, token: string): Promise<void> {
-    user.refreshToken = token;
-    await this.userRepository.save(user);
-  }
+    /**
+     * save RefreshToken to user.
+     * @param user User
+     * @param token RefreshToken
+     */
+    saveRefreshToken(user: User, token: string): Promise<void>
 }

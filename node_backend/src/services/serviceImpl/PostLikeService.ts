@@ -1,9 +1,9 @@
 import {Service} from "typedi";
 import {InjectRepository} from "typeorm-typedi-extensions";
-import {Post} from "../entities/Post";
-import {PostLike} from "../entities/PostLike";
-import {PostRepository} from "../repositories/PostRepository";
-import {PostLikeRepository} from "../repositories/PostLikeRepository";
+import {Post} from "../../entities/Post";
+import {PostLike} from "../../entities/PostLike";
+import {PostRepository} from "../../repositories/PostRepository";
+import {PostLikeRepository} from "../../repositories/PostLikeRepository";
 
 @Service()
 export class PostLikeService {
