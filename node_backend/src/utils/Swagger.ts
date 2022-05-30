@@ -27,16 +27,16 @@ export function useSwagger(app: express.Application) {
     components: {
       schemas,
       securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
+        // bearerAuth: {
+        //   type: "http",
+        //   scheme: "bearer",
+        //   bearerFormat: "JWT",
+        // },
       },
     },
     info: {
-      title: "Visual Printing API",
-      description: "Visual Printing 2.0",
+      title: "Node Express CRUD",
+      description: "Crud template with Node Express",
       version: "2.0.0",
     },
   });

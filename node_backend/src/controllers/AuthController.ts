@@ -17,11 +17,12 @@ import {Response} from "express";
 import {UserService} from "../services/serviceImpl/UserService";
 import {OpenAPI} from "routing-controllers-openapi";
 import {CreateUserDto, LoginUserDto, ResponseUserDto} from "../dtos/UserDto";
+import {AuthService} from "../services/AuthService";
 
 @JsonController("/auth")
 export class AuthController {
     constructor(
-        private authService: AuthServiceImpl,
+        private authService: AuthService,
         private userService: UserService,
     ) {
     }
