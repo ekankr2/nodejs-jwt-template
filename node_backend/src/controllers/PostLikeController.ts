@@ -8,7 +8,7 @@ import {
   Delete,
   HttpCode,
 } from "routing-controllers";
-import { PostLikeService } from "../services/serviceImpl/PostLikeService";
+import { PostLikeService } from "../services/PostLikeService";
 import { Post as PostEntity } from "../entities/Post";
 import {checkCookieAccessToken} from "../middlewares/AuthMiddleware";
 import { Response } from "express";

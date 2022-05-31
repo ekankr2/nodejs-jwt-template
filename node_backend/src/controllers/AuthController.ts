@@ -1,4 +1,4 @@
-import {AuthServiceImpl} from "../services/serviceImpl/AuthServiceImpl";
+import {AuthService} from "../services/AuthService";
 import {
     JsonController,
     Post,
@@ -14,10 +14,9 @@ import {
     generateRefreshToken, removeRefreshTokenCookie, setAccessTokenCookie, setRefreshTokenCookie,
 } from "../middlewares/AuthMiddleware";
 import {Response} from "express";
-import {UserService} from "../services/serviceImpl/UserService";
+import {UserService} from "../services/UserService";
 import {OpenAPI} from "routing-controllers-openapi";
 import {CreateUserDto, LoginUserDto, ResponseUserDto} from "../dtos/UserDto";
-import {AuthService} from "../services/AuthService";
 
 @JsonController("/auth")
 export class AuthController {

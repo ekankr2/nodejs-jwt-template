@@ -1,4 +1,4 @@
-import {PostService} from "../services/serviceImpl/PostService";
+import {PostService} from "../services/PostService";
 import {
     Body,
     Delete,

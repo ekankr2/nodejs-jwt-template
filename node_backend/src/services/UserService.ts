@@ -1,10 +1,10 @@
 import {Service} from "typedi";
 import {InjectRepository} from "typeorm-typedi-extensions";
-import {User} from "../../entities/User";
-import {UserRepository} from "../../repositories/UserRepository";
-import {PostRepository} from "../../repositories/PostRepository";
-import {PostCommentRepository} from "../../repositories/PostCommentRepository";
-import {CreateUserDto, UpdateUserDto} from "../../dtos/UserDto";
+import {User} from "../entities/User";
+import {UserRepository} from "../repositories/UserRepository";
+import {PostRepository} from "../repositories/PostRepository";
+import {PostCommentRepository} from "../repositories/PostCommentRepository";
+import {CreateUserDto, UpdateUserDto} from "../dtos/UserDto";
 
 @Service()
 export class UserService {

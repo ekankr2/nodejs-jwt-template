@@ -1,12 +1,12 @@
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
-import { PostComment } from "../../entities/PostComment";
-import { PostCommentRepository } from "../../repositories/PostCommentRepository";
+import { PostComment } from "../entities/PostComment";
+import { PostCommentRepository } from "../repositories/PostCommentRepository";
 import {
   CreatePostCommentDto,
   UpdatePostCommentDto,
   CreateCommentReplyDto,
-} from "../../dtos/PostCommentDto";
+} from "../dtos/PostCommentDto";
 
 @Service()
 export class PostCommentService {

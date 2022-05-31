@@ -1,5 +1,5 @@
-import {PostService} from "../services/serviceImpl/PostService";
-import {PostCommentService} from "../services/serviceImpl/PostCommentService";
+import {PostService} from "../services/PostService";
+import {PostCommentService} from "../services/PostCommentService";
 import {
     JsonController,
     Get,
