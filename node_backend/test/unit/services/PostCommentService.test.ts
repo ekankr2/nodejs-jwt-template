@@ -96,7 +96,7 @@ describe("PostCommentService", () => {
       postCommentId,
     );
     expect(commentReplies.length).toBe(1);
-    expect(commentReplies[0].parent).toBe(postCommentId);
+    expect(commentReplies[0].parent).toBe(postCommentId.toString());
     expect(commentReplies[0].depth).toBe(1);
     expect(commentReplies[0].text).toBe(request.replyText);
     expect(commentReplies[0].user.id).toBe(request.userId);

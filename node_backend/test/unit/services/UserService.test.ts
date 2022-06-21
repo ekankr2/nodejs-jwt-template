@@ -26,9 +26,9 @@ describe("UserService", () => {
     postCommentRepository = db.getCustomRepository(PostCommentRepository);
     await postCommentRepository.save(PostCommentSeed);
     userService = new UserService(
-      userRepository,
-      postRepository,
-      postCommentRepository,
+        userRepository,
+        postRepository,
+        postCommentRepository,
     );
   });
 
@@ -103,9 +103,9 @@ describe("UserService", () => {
 
   it("유저 정보를 수정하고 수정된 정보를 반환한다", async () => {
     const user = await userService.updateUser(
-      newUserId,
-      newUserId,
-      updateUserDto,
+        newUserId,
+        newUserId,
+        updateUserDto,
     );
     expect(user.id).toBe(newUserId);
     expect(user.realName).toBe(updateUserDto.realName);
@@ -113,18 +113,18 @@ describe("UserService", () => {
 
   it("잘못된 유저 정보를 수정하면 실패한다", async () => {
     const result = await userService.updateUser(
-      wrongUserId,
-      wrongUserId,
-      updateUserDto,
+        wrongUserId,
+        wrongUserId,
+        updateUserDto,
     );
     expect(result).toBeNull();
   });
 
   it("권한이 없는 사람이 유저 정보를 수정하면 실패한다", async () => {
     const result = await userService.updateUser(
-      activeUserId,
-      newUserId,
-      updateUserDto,
+        activeUserId,
+        newUserId,
+        updateUserDto,
     );
     expect(result).toBeNull();
   });

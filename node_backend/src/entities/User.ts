@@ -7,34 +7,34 @@ import {
     BeforeInsert,
     OneToMany,
 } from "typeorm";
-import {IsNotEmpty} from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import bcrypt from "bcrypt";
-import {Post} from "./Post";
+import { Post } from "./Post";
 
-@Entity({name: "user"})
+@Entity({ name: "user" })
 export class User {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @IsNotEmpty()
-    @Column({name: "real_name", length: 50})
+    @Column({ name: "real_name", length: 50 })
     realName: string;
 
     @IsNotEmpty()
-    @Column({length: 100})
+    @Column({ length: 100 })
     email: string;
 
     @IsNotEmpty()
-    @Column({select: false})
+    @Column({ select: false })
     password: string;
 
-    @Column({name: "refresh_token", nullable: true, select: false})
-    refreshToken: string;
+    @Column({ name: "refresh_token", nullable: true, select: false })
+    refreshToekn: string;
 
-    @CreateDateColumn({name: "created_at"})
+    @CreateDateColumn({ name: "created_at" })
     createdAt: Date;
 
-    @UpdateDateColumn({name: "updated_at"})
+    @UpdateDateColumn({ name: "updated_at" })
     updatedAt: Date;
 
     @OneToMany((type) => Post, (post) => post.user)
