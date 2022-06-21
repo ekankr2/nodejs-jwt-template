@@ -10,14 +10,18 @@ export class AuthService{
 
   public async validateUser(loginUserDto:LoginUserDto): Promise<User> {
     const user = await this.userRepository.findOne({
-      select: ["id", "email"],
+      select: ["id", "realName", "email", "password"],
       where: {
         email: loginUserDto.email,
       },
     });
 
-    if(user) {
-      return user
+    if (user) {
+      const isPasswordMatch = await user.comparePassword(loginUserDto.password);
+
+      if (isPasswordMatch) {
+        return user;
+      }
     }
 
     return undefined;
@@ -28,7 +32,7 @@ export class AuthService{
     refreshToken: string,
   ): Promise<User> {
     const user = await this.userRepository.findOne({
-      select: ["id", "email"],
+      select: ["id", "realName", "email"],
       where: {
         id: userId,
         refreshToken: refreshToken,
